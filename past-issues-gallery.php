@@ -61,10 +61,22 @@ function past_issues_shortcode_handler($atts) {
   $videos = json_decode(file_get_contents($config_file_loc));
   $video_count = count(get_object_vars($videos));
   
+  // Create array and populate with all years from json config
+  $year_array = [];
+  foreach( $videos as $video ) {
+    // Parse to get year
+    $year = explode("/", $video->title)[2];
+    // Push to array if not in array
+    if ( !in_array( $year, $year_array ) ) {
+      array_push( $year_array, $year );
+    }
+  }
+    
+  // Start output buffer
+  ob_start();
+  
   // If year given is current year, generate HTML that has most recent issue's html5 viewer up top with previous issue icons below
-  if ($atts['year'] == $current_year) {
-    // Start output buffer
-    ob_start(); ?>
+  if ($atts['year'] == $current_year) { ?>
       <h4>Current Issue</h4>
         <center>
           <iframe src="<?php echo $videos->vid0->youTubeURL; ?>" width="670" height="420" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
@@ -91,14 +103,9 @@ function past_issues_shortcode_handler($atts) {
       <?php endforeach; ?>
       </ul>
 
-    <?php
-    $buffer_contents = ob_get_contents();
-    ob_end_clean();
-    return $buffer_contents;
-  } else {
-      ob_start(); ?>
+    <?php                                       
+  } else { ?>
       <ul class="rig columns-3">
-
       <?php 
       // Create icon entry for each video
       foreach($videos as $video) :
@@ -113,14 +120,26 @@ function past_issues_shortcode_handler($atts) {
           <p><?php echo $video->title; ?></p>
         </li>
       <?php endforeach; ?>
-      </ul>
-      
-      <?php
-      $buffer_contents = ob_get_contents();
-      ob_end_clean();
-      return $buffer_contents;
+      </ul> 
+    <?php
   } // end if else 
+    // Generate links for all past years
+    ?>
+    
+    <h4>Past Years: 
+    <?php foreach( $year_array as $year ) : ?>
+     <?php if ( $year == $current_year ) continue ; ?>
+      <a href="<?php echo home_url('/past-issues/' . $year); ?>">
+        <?php echo $year ; ?>
+      </a>
+    <?php endforeach; ?>
+    </h4>
   
+  <?php  
+  // End buffer and return contents
+  $buffer_contents = ob_get_contents();
+  ob_end_clean();
+  return $buffer_contents;
 } // past_issues_shortcode_handler()
 
 add_shortcode('past-issues', 'past_issues_shortcode_handler');
