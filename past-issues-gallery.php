@@ -126,9 +126,9 @@ function past_issues_shortcode_handler($atts) {
     // Generate links for all past years
     ?>
     
-    <h4>Past Years: 
+    <h4>Other Years:
     <?php foreach( $year_array as $year ) : ?>
-     <?php if ( $year == $current_year ) continue ; ?>
+     <?php if ( $year == $atts['year'] ) continue ; ?>
       <a href="<?php echo home_url('/digital-flipbook/' . $year); ?>">
         <?php echo $year ; ?>
       </a>
