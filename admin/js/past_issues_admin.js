@@ -44,12 +44,12 @@ jQuery(document).ready(function ($) {
   $("#create-entry").click(function() {
     var portletCount = String($('.portlet').length);
     // Create new <div class="portlet">
-    $('form[name="gazette1_form"]').append(
+    $('form[name="gazette1_form"]').prepend(
       $('<div>').addClass('portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'));
     // Select last portlet and add necessary HTML
     
     
-    $('.portlet').last().html(
+    $('.portlet').first().html(
         '<div class="portlet-header ui-sortable-handle ui-widget-header ui-corner-all">' +
         '<span class="ui-icon ui-icon-plusthick portlet-toggle"></span>New Entry</div>' +
          '<div class="portlet-content" style="display: block;">' +
