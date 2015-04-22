@@ -15,37 +15,37 @@
       <form class = "column" name="gazette1_form" method="post" 
             action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>">
       <input type="hidden" name="gazette1_hidden" value="Y<?php echo $video_count; ?>">
+          <p class="submit">
+              <input type="submit" name="gazette1_submit"
+                     value="<?php _e('Update', 'gazette1_trdom' ) ?>" />
+          </p>
+
       <?php 
       $count = 0;
       foreach($videos as $video): ?>
         <div class="portlet">
-        <div class="portlet-header"><?php echo $video->title; ?></div>
+          <div class="portlet-header"><?php echo $video->title; ?></div>
           <div class="portlet-content">
           <p>
             <?php _e( "Date: " ); ?>
-            <input type="text" name="video[vid<?php echo $count;?>][title]" 
+            <input type="text" name="video[vid<?php echo $count;?>][title]"
                 value="<?php echo $video->title; ?>" size="50" placeholder="ex: 4/8/2015">
           </p>
           <p>
             <?php _e( "Cover URL: " ); ?>
-            <input type="text" name="video[vid<?php echo $count;?>][iconURL]" 
+            <input type="text" name="video[vid<?php echo $count;?>][iconURL]"
                 value="<?php echo $video->iconURL; ?>" size="50" placeholder="ex: http://okgazette.com/wp-content/uploads/picture.jpg">
           </p>
           <p>
             <?php _e( "Issuu URL: " ); ?>
-            <input type="text" name="video[vid<?php echo $count;?>][youTubeURL]" 
+            <input type="text" name="video[vid<?php echo $count;?>][youTubeURL]"
                   value="<?php echo $video->youTubeURL; ?>" size="50" placeholder="ex: http://issuu.com/okgazette/docs/okgazette_4-8-15lr?e=11698495/12232508">
           </p>
           </div>
-          </div>
-          
-       <?php $count++; ?>  
-       <?php endforeach; ?>  
-        
-        <p class="submit">
-        <input type="submit" name="gazette1_submit" 
-            value="<?php _e('Update', 'gazette1_trdom' ) ?>" />
-        </p>
+        </div>
+        <?php $count++; ?>
+      <?php endforeach; ?>
+
       </form>
       
     <?php endif;   
