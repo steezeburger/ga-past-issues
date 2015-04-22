@@ -129,7 +129,7 @@ function past_issues_shortcode_handler($atts) {
     <h4>Past Years: 
     <?php foreach( $year_array as $year ) : ?>
      <?php if ( $year == $current_year ) continue ; ?>
-      <a href="<?php echo home_url('/past-issues/' . $year); ?>">
+      <a href="<?php echo home_url('/digital-flipbook/' . $year); ?>">
         <?php echo $year ; ?>
       </a>
     <?php endforeach; ?>

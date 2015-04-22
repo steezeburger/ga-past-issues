@@ -56,6 +56,8 @@
     <?php echo "<h2>" . __( 'Past Issues Gallery Options', 'gazette1_trdom' ) . "</h2>"; ?>
     <hr>
     <ul>
+      <li><p>Images for the cover should ideally be 512 x 680.</p></li>
+      <li><p>The date should be of format MM/DD/YYYY or M/D/YYYY (ex. 4/10/2014 or 12/1/2015).</p></li>
       <li><p>Order issues by clicking, dragging, and dropping the tiles below. The most recent issue will display predominantly. </p></li>
       <li><p>Edit the entries by clicking the Plus Sign icon and changing the values in the input fields and clicking Update.</p></li>
       <li><p>Delete an entry by clicking the Trash icon to the right of the entry title.</p></li>
