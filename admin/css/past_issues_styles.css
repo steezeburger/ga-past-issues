@@ -36,3 +36,8 @@ body {
   margin: 0 1em 1em 0;
   height: 50px;
 }
+
+.ui-icon-trash {
+    float: right;
+    margin-right: 20px;
+}

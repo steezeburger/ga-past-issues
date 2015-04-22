@@ -35,7 +35,7 @@ jQuery(document).ready(function ($) {
   $(".portlet-delete").click(function () {
     var trash = $(this);
     // Confirm before deleting
-    var confirmation = confirm("Are you sure you want to delete this entry?");
+    var confirmation = confirm("Are you sure you want to delete this entry?\nThe content will be deleted forever");
     if (confirmation == true) {
       trash.closest(".portlet").remove();
     }
