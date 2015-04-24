@@ -179,7 +179,7 @@ function past_issues_widget_shortcode () {
   </style>
 
   <div class="digital-flipbook-widget">
-    <a href="http://okgazette.com/digital-flipbook">
+    <a href="<?php echo home_url('/digital-flipbook/'); ?>">
       <p>Click here to view a digital replica of this week's issue.</p>
       <img src="<?php echo $most_recent_iconURL ?>" alt="Digital Flipbook">
     </a>
