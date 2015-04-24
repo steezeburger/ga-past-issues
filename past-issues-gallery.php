@@ -59,8 +59,7 @@ function past_issues_shortcode_handler($atts) {
 
   // Get file contents as string and decode json into array of objects
   $videos = json_decode(file_get_contents($config_file_loc));
-  $video_count = count(get_object_vars($videos));
-  
+
   // Create array and populate with all years from json config
   $year_array = [];
   foreach( $videos as $video ) {
@@ -142,5 +141,55 @@ function past_issues_shortcode_handler($atts) {
   return $buffer_contents;
 } // past_issues_shortcode_handler()
 
-add_shortcode('past-issues', 'past_issues_shortcode_handler');
+add_shortcode( 'past-issues', 'past_issues_shortcode_handler' );
+
+function past_issues_widget_shortcode () {
+  // Config file location
+  $config_file_loc = plugin_dir_path(__FILE__) . 'admin/configuration.json';
+
+  // Get file contents as string and decode json into array of objects
+  $issues = json_decode(file_get_contents($config_file_loc), true);
+  $most_recent_iconURL = $issues["vid0"]["iconURL"];
+
+  ob_start(); ?>
+
+  <!--  Inline CSS, sorry -->
+  <style>
+    .digital-flipbook-widget {
+      width: 300px;
+      height: 275px;
+      background-color: #eee;
+      text-align: center;
+      font-size: 12px;
+    }
+    .digital-flipbook-widget a {
+      text-decoration: none;
+      color: #ce171f;
+    }
+    .digital-flipbook-widget p {
+      padding: 10px;
+      width: 65%;
+      margin: 0 auto;
+    }
+    .digital-flipbook-widget img {
+      height: 70%;
+      margin: 0 auto;
+      box-shadow: 10px 10px 5px #888888;
+    }
+  </style>
+
+  <div class="digital-flipbook-widget">
+    <a href="http://okgazette.com/digital-flipbook">
+      <p>Click here to view a digital replica of this week's issue.</p>
+      <img src="<?php echo $most_recent_iconURL ?>" alt="Digital Flipbook">
+    </a>
+  </div>
+
+  <?php
+  $buffer_contents = ob_get_contents();
+  ob_end_clean();
+  return $buffer_contents;
+}
+
+add_shortcode( 'past-issues-widget', 'past_issues_widget_shortcode' );
 ?>
