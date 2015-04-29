@@ -7,8 +7,8 @@ jQuery(document).ready(function ($) {
     placeholder: "portlet-placeholder ui-corner-all",
     // Changes input name attribute to contain proper location in list
     stop: function(event, ui) {
-      console.log($('input[name="gazette1_hidden"]').attr('val'));
-      console.log(ui.item.index());
+      //console.log($('input[name="gazette1_hidden"]').attr('val'));
+      //console.log(ui.item.index());
       $('.portlet-content input').each(function(idx, item) {
         // Update input names according to position in sortable list
         // Update input names according to position in sortable list
@@ -46,24 +46,33 @@ jQuery(document).ready(function ($) {
     // Create new <div class="portlet">
     $('form[name="gazette1_form"]').prepend(
       $('<div>').addClass('portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'));
-    // Select last portlet and add necessary HTML
-
-
+    // Select first portlet and add necessary HTML
+    // vid0 because it's added at beginning. The next block updates the rest of the tiles' input names
     $('.portlet').first().html(
       '<div class="portlet-header ui-sortable-handle ui-widget-header ui-corner-all">' +
       '<span class="ui-icon ui-icon-plusthick portlet-toggle"></span>New Entry</div>' +
       '<div class="portlet-content" style="display: block;">' +
       '<p>Date:' +
-      '<input type="text" name="video[vid'+portletCount+'][title]" size="50" placeholder="ex: 1/2/2013">' +
+      '<input type="text" name="video[vid0][title]" size="50" placeholder="ex: 1/2/2013">' +
       '</p>' +
       '<p>Cover URL:' +
-      '<input type="text" name="video[vid'+portletCount+'][iconURL]" size="50" placeholder="ex: http://okgazette.com/wp-content/uploads/picture.jpg">' +
+      '<input type="text" name="video[vid0][iconURL]" size="50" placeholder="ex: http://okgazette.com/wp-content/uploads/picture.jpg">' +
       '</p>' +
       '<p>Issuu URL:' +
-      '<input type="text" name="video[vid'+portletCount+'][youTubeURL]" size="50" placeholder="ex: http://issuu.com/okgazette/docs/okgazette_4-8-15lr?e=11698495/12232508">' +
+      '<input type="text" name="video[vid0][youTubeURL]" size="50" placeholder="ex: http://issuu.com/okgazette/docs/okgazette_4-8-15lr?e=11698495/12232508">' +
       '</p>' +
       '</div>'
     );
+    // Updates the input names of all tiles when you add new tile
+    $('.portlet-content input').each(function(idx, item) {
+      // Update input names according to position in sortable list
+      // Update input names according to position in sortable list
+      var sith = $(this).attr('name');
+      // Replaces the X in video[vidX][$key] with proper video number
+      var newSith = sith.substr(0, 9) + Math.floor(idx/3) + sith.substr(10);
+      $(this).attr('name', newSith);
+    });
+
   });
 
 });

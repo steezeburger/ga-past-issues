@@ -78,7 +78,7 @@ function past_issues_shortcode_handler($atts) {
 	if ($atts['year'] == $current_year) { ?>
 		<h4>Current Issue</h4>
 		<center>
-			<iframe src="<?php echo $videos->vid0->youTubeURL; ?>" width="670" height="420" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+			<iframe src="<?php echo reset($videos)->youTubeURL; ?>" width="670" height="420" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 		</center>
 		<h4>Previous Issues</h4>
 		<ul class="rig columns-3">
