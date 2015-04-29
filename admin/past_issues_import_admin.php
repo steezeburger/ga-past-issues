@@ -7,14 +7,14 @@ function generate_html($config_file) {
 	// Check if config file exists
 	if (file_exists($config_file)) :
 		// Get file contents as string and decode json into array of objects
-		$videos = json_decode(file_get_contents($config_file));
-		$video_count = count(get_object_vars($videos));
+		$issues = json_decode(file_get_contents($config_file));
+		$issue_count = count(get_object_vars($issues));
 		//Generate proper HTML
 		?>
 
 		<form class = "column" name="gazette1_form" method="post"
 		      action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>">
-			<input type="hidden" name="gazette1_hidden" value="Y<?php echo $video_count; ?>">
+			<input type="hidden" name="gazette1_hidden" value="Y<?php echo $issue_count; ?>">
 			<p class="submit">
 				<input type="submit" name="gazette1_submit"
 				       value="<?php _e('Update', 'gazette1_trdom' ) ?>" />
@@ -22,24 +22,24 @@ function generate_html($config_file) {
 
 			<?php
 			$count = 0;
-			foreach($videos as $video): ?>
+			foreach($issues as $issue): ?>
 				<div class="portlet">
-					<div class="portlet-header"><?php echo $video->title; ?></div>
+					<div class="portlet-header"><?php echo $issue->title; ?></div>
 					<div class="portlet-content">
 						<p>
 							<?php _e( "Date: " ); ?>
 							<input type="text" name="video[vid<?php echo $count;?>][title]"
-							       value="<?php echo $video->title; ?>" size="50" placeholder="ex: 4/8/2015">
+							       value="<?php echo $issue->title; ?>" size="50" placeholder="ex: 4/8/2015">
 						</p>
 						<p>
 							<?php _e( "Cover URL: " ); ?>
 							<input type="text" name="video[vid<?php echo $count;?>][iconURL]"
-							       value="<?php echo $video->iconURL; ?>" size="50" placeholder="ex: http://okgazette.com/wp-content/uploads/picture.jpg">
+							       value="<?php echo $issue->iconURL; ?>" size="50" placeholder="ex: http://okgazette.com/wp-content/uploads/picture.jpg">
 						</p>
 						<p>
 							<?php _e( "Issuu URL: " ); ?>
-							<input type="text" name="video[vid<?php echo $count;?>][youTubeURL]"
-							       value="<?php echo $video->youTubeURL; ?>" size="50" placeholder="ex: http://issuu.com/okgazette/docs/okgazette_4-8-15lr?e=11698495/12232508">
+							<input type="text" name="video[vid<?php echo $count;?>][issuuURL]"
+							       value="<?php echo $issue->issuuURL; ?>" size="50" placeholder="ex: http://issuu.com/okgazette/docs/okgazette_4-8-15lr?e=11698495/12232508">
 						</p>
 					</div>
 				</div>
@@ -71,7 +71,7 @@ function generate_html($config_file) {
 	// User submits form
 	if($_POST['gazette1_hidden'][0] == 'Y') {
 		// Get video count for looping
-		$video_count = (int)$_POST['gazette1_hidden'][1];
+		$issue_count = (int)$_POST['gazette1_hidden'][1];
 		// Init empty array
 		$arr = array();
 		// For number of videos, store proper key-value pairs for current video in loop

@@ -7,8 +7,6 @@ jQuery(document).ready(function ($) {
     placeholder: "portlet-placeholder ui-corner-all",
     // Changes input name attribute to contain proper location in list
     stop: function(event, ui) {
-      //console.log($('input[name="gazette1_hidden"]').attr('val'));
-      //console.log(ui.item.index());
       $('.portlet-content input').each(function(idx, item) {
         // Update input names according to position in sortable list
         // Update input names according to position in sortable list
@@ -59,7 +57,7 @@ jQuery(document).ready(function ($) {
       '<input type="text" name="video[vid0][iconURL]" size="50" placeholder="ex: http://okgazette.com/wp-content/uploads/picture.jpg">' +
       '</p>' +
       '<p>Issuu URL:' +
-      '<input type="text" name="video[vid0][youTubeURL]" size="50" placeholder="ex: http://issuu.com/okgazette/docs/okgazette_4-8-15lr?e=11698495/12232508">' +
+      '<input type="text" name="video[vid0][issuuURL]" size="50" placeholder="ex: http://issuu.com/okgazette/docs/okgazette_4-8-15lr?e=11698495/12232508">' +
       '</p>' +
       '</div>'
     );

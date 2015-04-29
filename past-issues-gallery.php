@@ -58,13 +58,13 @@ function past_issues_shortcode_handler($atts) {
 	$config_file_loc = plugin_dir_path(__FILE__) . 'admin/configuration.json';
 
 	// Get file contents as string and decode json into array of objects
-	$videos = json_decode(file_get_contents($config_file_loc));
+	$issues = json_decode(file_get_contents($config_file_loc));
 
 	// Create array and populate with all years from json config
 	$year_array = [];
-	foreach( $videos as $video ) {
+	foreach( $issues as $issue ) {
 		// Parse to get year
-		$year = explode("/", $video->title)[2];
+		$year = explode("/", $issue->title)[2];
 		// Push to array if not in array
 		if ( !in_array( $year, $year_array ) ) {
 			array_push( $year_array, $year );
@@ -78,7 +78,7 @@ function past_issues_shortcode_handler($atts) {
 	if ($atts['year'] == $current_year) { ?>
 		<h4>Current Issue</h4>
 		<center>
-			<iframe src="<?php echo reset($videos)->youTubeURL; ?>" width="670" height="420" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+			<iframe src="<?php echo reset($issues)->issuuURL; ?>" width="670" height="420" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 		</center>
 		<h4>Previous Issues</h4>
 		<ul class="rig columns-3">
@@ -86,18 +86,18 @@ function past_issues_shortcode_handler($atts) {
 			<?php
 			// Create icon entry for each video
 			$counter = 0;
-			foreach($videos as $video) :
+			foreach($issues as $issue) :
 				// Skip first issue because it is featured
 				if ($counter++ == 0) continue;
 				// Skip all issues not in specified year
-				$issue_year = explode("/", $video->title)[2];
+				$issue_year = explode("/", $issue->title)[2];
 				if ($issue_year != $atts['year']) continue;
 				?>
 				<li>
-					<a class="wplightbox" title="<?php echo $video->title; ?>" href="<?php echo $video->youTubeURL; ?>" >
-						<img src="<?php echo $video->iconURL; ?>" alt="<?php echo $video->title; ?>" height="151" />
+					<a class="wplightbox" title="<?php echo $issue->title; ?>" href="<?php echo $issue->issuuURL; ?>" >
+						<img src="<?php echo $issue->iconURL; ?>" alt="<?php echo $issue->title; ?>" height="151" />
 					</a>
-					<p><?php echo $video->title; ?></p>
+					<p><?php echo $issue->title; ?></p>
 				</li>
 			<?php endforeach; ?>
 		</ul>
@@ -107,16 +107,16 @@ function past_issues_shortcode_handler($atts) {
 		<ul class="rig columns-3">
 			<?php
 			// Create icon entry for each video
-			foreach($videos as $video) :
+			foreach($issues as $issue) :
 				// Skip all issues not in specified year
-				$issue_year = explode("/", $video->title)[2];
+				$issue_year = explode("/", $issue->title)[2];
 				if ($issue_year != $atts['year']) continue;
 				?>
 				<li>
-					<a class="wplightbox" title="<?php echo $video->title; ?>" href="<?php echo $video->youTubeURL; ?>" >
-						<img src="<?php echo $video->iconURL; ?>" alt="<?php echo $video->title; ?>" height="151" />
+					<a class="wplightbox" title="<?php echo $issue->title; ?>" href="<?php echo $issue->issuuURL; ?>" >
+						<img src="<?php echo $issue->iconURL; ?>" alt="<?php echo $issue->title; ?>" height="151" />
 					</a>
-					<p><?php echo $video->title; ?></p>
+					<p><?php echo $issue->title; ?></p>
 				</li>
 			<?php endforeach; ?>
 		</ul>
