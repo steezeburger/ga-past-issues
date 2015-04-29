@@ -63,7 +63,7 @@ function generate_html($config_file) {
 		<li><p>Delete an entry by clicking the Trash icon to the right of the entry title.</p></li>
 		<li></li>
 	</ul>
-	<p>NOTE: Changes will not persist unless you click Update.</p>
+	<p>NOTE: Changes will not persist unless you click Update, even when deleting items.</p>
 
 	<button id="create-entry" type="button">Add New</button>
 
