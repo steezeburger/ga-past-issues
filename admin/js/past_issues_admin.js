@@ -9,7 +9,6 @@ jQuery(document).ready(function ($) {
     stop: function(event, ui) {
       $('.portlet-content input').each(function(idx, item) {
         // Update input names according to position in sortable list
-        // Update input names according to position in sortable list
         var sith = $(this).attr('name');
         // Replaces the X in video[vidX][$key] with proper video number
         var newSith = sith.substr(0, 9) + Math.floor(idx/3) + sith.substr(10);
@@ -64,9 +63,10 @@ jQuery(document).ready(function ($) {
     // Updates the input names of all tiles when you add new tile
     $('.portlet-content input').each(function(idx, item) {
       // Update input names according to position in sortable list
-      // Update input names according to position in sortable list
       var sith = $(this).attr('name');
       // Replaces the X in video[vidX][$key] with proper video number
+      //  grabs input name, first 9 letters always the same
+      //    there are 3 inputs per tile, thus the Math.floor(idx/3)
       var newSith = sith.substr(0, 9) + Math.floor(idx/3) + sith.substr(10);
       $(this).attr('name', newSith);
     });

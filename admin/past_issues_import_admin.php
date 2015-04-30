@@ -62,17 +62,17 @@ function generate_html($config_file) {
 		<li><p>Edit the entries by clicking the Plus Sign icon and changing the values in the input fields and clicking Update.</p></li>
 		<li><p>Delete an entry by clicking the Trash icon to the right of the entry title.</p></li>
 		<li>
-			<ul><p><strong>Usage:</strong></p>
-				<p>This plugin provides the shortcode <strong>[past-issues]</strong>.
+			<ul><p class="bold-it"><strong>Usage:</strong></p>
+				<p>This plugin provides the shortcode <span class="bold-it">[past-issues]</span>.
 					   You can put this on any page or post you want. If no year is specified,
 					   the current year's issues will be displayed.</p>
-				<p>You can also use <strong>[past-issues year=XXXX]</strong>.
+				<p>You can also use <span class="bold-it">[past-issues year=XXXX]</span>.
 					   If there are issues for that year, they will be displayed.</p>
 			</ul>
 		</li>
 	</ul>
 
-	<p><strong>NOTE: Changes will not persist unless you click Update, even when deleting items.</strong></p>
+	<p class="bold-it"><strong>NOTE: Changes will not persist unless you click Update, even when deleting items.</strong></p>
 
 	<button id="create-entry" type="button">Add New</button>
 

@@ -2,6 +2,10 @@ body {
   min-width: 750px;
 }
 
+.bold-it {
+  font-weight: bold;
+}
+
 .column {
   width: 750px;
   float: left;
