@@ -57,7 +57,7 @@ function past_issues_shortcode_handler($atts) {
 	// Config file location
 	$config_file_loc = plugin_dir_path(__FILE__) . 'admin/configuration.json';
 
-	// Get file contents as string and decode json into array of objects
+	// Get file contents as string and decode json into object of objects
 	$issues = json_decode(file_get_contents($config_file_loc));
 
 	// Create array and populate with all years from json config
@@ -103,6 +103,7 @@ function past_issues_shortcode_handler($atts) {
 		</ul>
 
 	<?php
+	// else just generate icon grid, no hero video
 	} else { ?>
 		<ul class="rig columns-3">
 			<?php
@@ -148,8 +149,8 @@ function past_issues_widget_shortcode () {
 	$config_file_loc = plugin_dir_path(__FILE__) . 'admin/configuration.json';
 
 	// Get file contents as string and decode json into array of objects
-	$issues = json_decode(file_get_contents($config_file_loc), true);
-	$most_recent_iconURL = $issues["vid0"]["iconURL"];
+	$issues = json_decode(file_get_contents($config_file_loc));
+	$most_recent_iconURL = reset($issues)->iconURL;
 
 	ob_start(); ?>
 
@@ -181,7 +182,7 @@ function past_issues_widget_shortcode () {
 	<div class="digital-flipbook-widget">
 		<a href="<?php echo home_url('/digital-flipbook/'); ?>">
 			<p>Click here to view a digital replica of this week's issue.</p>
-			<img src="<?php echo $most_recent_iconURL ?>" alt="Digital Flipbook">
+			<img src="<?php echo $most_recent_iconURL ?>" alt="Digital Flipbook Cover">
 		</a>
 	</div>
 
